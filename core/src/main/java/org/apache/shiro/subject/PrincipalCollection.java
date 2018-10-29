@@ -37,6 +37,11 @@ import java.util.Set;
  * @see #getRealmNames()
  * @since 0.9
  */
+//与相应主题相关联的所有主体的集合。委托人只是识别属性的安全术语，
+// 例如用户名或用户ID或社会安全号码或可被视为主题的“识别”属性的任何其他内容。
+//
+//PrincipalCollection根据首次创建主题时来自Realm的Realm来组织其内部主体。
+// 要获取特定Realm的主体，请参阅fromRealm方法。您还可以通过getRealmNames（）方法查看为此集合提供的领域。
 public interface PrincipalCollection extends Iterable, Serializable {
 
     /**

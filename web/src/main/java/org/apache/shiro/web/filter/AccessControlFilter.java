@@ -204,6 +204,9 @@ public abstract class AccessControlFilter extends PathMatchingFilter {
      *
      * @param request the incoming ServletRequest to save for re-use later (for example, after a redirect).
      */
+    //便捷方法仅委托WebUtils.saveRequest（请求）保存请求状态以便以后重用。
+    // 这主要用于在发出重定向以将用户返回到其最初请求的URL /资源时保留用户请求状态。
+    //如果您需要保存然后立即将用户重定向到登录，请考虑直接使用saveRequestAndRedirectToLogin（请求，响应）。
     protected void saveRequest(ServletRequest request) {
         WebUtils.saveRequest(request);
     }

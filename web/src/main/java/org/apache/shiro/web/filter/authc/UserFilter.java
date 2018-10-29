@@ -33,6 +33,9 @@ import org.apache.shiro.web.filter.AccessControlFilter;
  *
  * @since 0.9
  */
+//如果访问者是已知用户（定义为具有已知主体），则允许访问资源的过滤器。
+// 这意味着任何通过“记住我”功能进行身份验证或记住的用户都将被允许从此过滤器进行访问。
+//如果访问者不是已知用户，则他们将被重定向到loginUrl
 public class UserFilter extends AccessControlFilter {
 
     /**

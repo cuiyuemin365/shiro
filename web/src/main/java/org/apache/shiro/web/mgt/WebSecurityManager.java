@@ -36,5 +36,8 @@ public interface WebSecurityManager extends SecurityManager {
      * @return <code>true</code> if the security manager is using the HTTP session; otherwise,
      *         <code>false</code>.
      */
+    //安全信息需要从请求到请求保留，因此Shiro使用会话。
+    // 通常，安全管理器将使用servlet容器的HTTP会话，但也可以使用自定义会话实现，例如基于EhCache。
+    // 此方法指示安全管理器是否正在使用HTTP会话。
     boolean isHttpSessionMode();
 }

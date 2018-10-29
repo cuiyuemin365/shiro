@@ -36,6 +36,11 @@ package org.apache.shiro.authc;
  * @see org.apache.shiro.authc.pam.ModularRealmAuthenticator ModularRealmAuthenticator
  * @since 0.1
  */
+//Authenticator负责验证应用程序中的帐户。它是Shiro API的主要入口之一。
+//
+//虽然不是必需的，但通常会为应用程序配置一个“主”验证器。启用可插入身份验证模块（PAM）行为（两阶段提交等）通常由单个身份验证器协调并与应用程序配置的域集进行交互来实现。
+//
+//请注意，大多数Shiro用户不会直接与Authenticator实例进行交互。 Shiro的默认体系结构基于整体SecurityManager，它通常包装Authenticator实例。
 public interface Authenticator {
 
     /**
@@ -62,6 +67,10 @@ public interface Authenticator {
      * @see ConcurrentAccessException
      * @see UnknownAccountException
      */
+    //根据提交的AuthenticationToken对用户进行身份验证。
+    //
+    //如果身份验证成功，则返回AuthenticationInfo实例，该实例表示用户与Shiro相关的帐户数据。
+    // 这个返回的对象通常用于构造一个Subject，该Subject代表一个更完整的特定于安全性的“视图”，该视图也允许访问Session。
     public AuthenticationInfo authenticate(AuthenticationToken authenticationToken)
             throws AuthenticationException;
 }

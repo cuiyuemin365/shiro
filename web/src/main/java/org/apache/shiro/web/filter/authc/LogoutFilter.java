@@ -195,6 +195,7 @@ public class LogoutFilter extends AdviceFilter {
      *
      * @return Returns true if POST only logout is enabled
      */
+    //由于浏览器预取，使用GET请求注销我会导致用户意外记录，例如：输入地址栏时输出。如果postOnlyLogout为true。只有POST请求才会导致注销。
     public boolean isPostOnlyLogout() {
         return postOnlyLogout;
     }

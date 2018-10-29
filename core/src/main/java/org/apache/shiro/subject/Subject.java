@@ -57,6 +57,19 @@ import java.util.concurrent.Callable;
  *
  * @since 0.1
  */
+//Subject表示单个应用程序用户的状态和安全操作。这些操作包括身份验证（登录/注销），授权（访问控制）和会话访问。
+//这是Shiro的单用户安全功能的主要机制.
+//获得主题
+//要获取当前正在执行的Subject，应用程序开发人员几乎总是使用SecurityUtils：
+//   SecurityUtils.getSubject（）
+//几乎所有安全操作都应该使用此方法返回的Subject执行。
+//许可方法
+//请注意，此接口中有许多*Permission方法被重载以接受String参数而不是Permission实例。
+// 如果需要，它们是一种便利，允许调用者使用Permission的String表示。
+// 底层的授权子系统实现通常只是将这些String值转换为Permission实例，然后只调用相应的类型安全方法。
+// （Shiro的默认实现使用PermissionResolvers对这些方法进行String-to-Permission转换。）
+//
+//这些重载*权限方法为了方便和简单而放弃了类型安全，因此您应根据自己的喜好和需求选择使用哪些方法。
 public interface Subject {
 
     /**

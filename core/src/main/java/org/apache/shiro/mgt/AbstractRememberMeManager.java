@@ -61,6 +61,20 @@ import org.slf4j.LoggerFactory;
  *
  * @since 0.9
  */
+//RememberMeManager接口的抽象实现，用于处理记住的用户身份的序列化和加密。
+//
+//记住的身份存储位置和详细信息留给子类。
+//默认加密密钥
+//默认情况下，此实现使用AesCipherService进行强加密。它还使用默认生成的对称密钥来加密和解密数据。
+// 由于AES是对称密码，因此相同的密钥用于加密和解密数据，但是注意：
+//
+//因为Shiro是一个开源项目，如果有人知道您使用的是Shiro的默认密钥，他们可以下载/查看源代码，并且需要付出足够的努力，重建密钥并随意解码加密数据。
+//
+//当然，此密钥仅用于加密记住的PrincipalCollection，通常是用户ID或用户名。
+// 因此，如果您不考虑这些敏感信息，并且您认为默认密钥仍然“足够困难”，那么您可以忽略此问题。
+//
+//但是，如果您确实认为这构成了敏感信息，建议您通过setCipherKey方法将自己的密钥提供给只有您的应用程序知道的密钥，以确保没有第三方可以解密您的数据。
+// 您可以通过调用CipherService的generateNewKey方法并将该结果用作cipherKey配置属性来生成您自己的密钥。
 public abstract class AbstractRememberMeManager implements RememberMeManager {
 
     /**

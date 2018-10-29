@@ -49,6 +49,11 @@ import javax.servlet.ServletResponse;
  *
  * @since 0.9
  */
+//允许访问路径而不执行任何类型的安全检查的过滤器。
+//
+//此过滤器主要用于排除策略，其中您已定义了需要特定安全级别的URL模式，但可能只有该模式中的URL子集应允许任何访问。
+//
+//例如，如果您拥有网站的仅用户部分，则可能需要要求访问该部分中的任何网址必须来自经过身份验证的用户。
 public class AnonymousFilter extends PathMatchingFilter {
 
     /**

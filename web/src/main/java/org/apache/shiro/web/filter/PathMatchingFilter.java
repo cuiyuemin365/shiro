@@ -59,6 +59,10 @@ public abstract class PathMatchingFilter extends AdviceFilter implements PathCon
      * <p>The values are filter-specific data that this Filter should use when processing the corresponding
      * key (path).  The values can be null if no Filter-specific config was specified for that url.
      */
+    //路径到配置条目的集合，其中键是此过滤器应处理的路径，值是特定于此特定路径的此过滤器的（可能为空）配置元素。
+    //
+    //换句话说，键是此Filter将处理的路径（url）。
+    //这些值是此过滤器在处理相应密钥（路径）时应使用的特定于过滤器的数据。如果没有为该URL指定特定于过滤器的配置，则值可以为null。
     protected Map<String, Object> appliedPaths = new LinkedHashMap<String, Object>();
 
     /**

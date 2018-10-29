@@ -71,6 +71,24 @@ import java.util.concurrent.Callable;
  * @since 1.0
  * @see <a href="http://shiro.apache.org/subject.html">Subject documentation</a>
  */
+//抽象基类，提供所有标准的Shiro请求过滤行为，并期望子类实现特定于配置的逻辑（INI，XML，.properties等）。
+//
+//子类应在重写的init（）方法实现中执行配置和构造逻辑。该实现应该通过分别调用setSecurityManager（WebSecurityManager）和setFilterChainResolver（FilterChainResolver）方法来使任何构造的SecurityManager和FilterChainResolver可用。
+//静态SecurityManager
+//默认情况下，此过滤器启用的SecurityManager实例不会通过SecurityUtils.setSecurityManager方法在静态内存中启用。相反，期望通过此Filter类的实例始终在请求处理线程上构造Subject实例。
+//
+//但是，如果需要在单独的（非请求处理）线程上构造Subject实例，
+// 则最安全的方法是通过SecurityUtils.getSecurityManager（）方法使SecurityManager在静态内存中可用。
+// 您可以通过另外指定init-param来完成此操作：
+//   <过滤器>
+//       ...其他配置在这里......
+//       <INIT-PARAM>
+//           <PARAM名称> staticSecurityManagerEnabled </ PARAM名称>
+//           <PARAM值>真</ PARAM值>
+//       </ INIT-param>
+//   </过滤器>
+//   
+//有关是否要执行此操作的详细信息，请参阅Shiro Subject文档，尤其是有关Subject.Builder和Thread Association的部分。
 public abstract class AbstractShiroFilter extends OncePerRequestFilter {
 
     private static final Logger log = LoggerFactory.getLogger(AbstractShiroFilter.class);

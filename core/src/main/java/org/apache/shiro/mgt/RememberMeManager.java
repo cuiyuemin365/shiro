@@ -45,6 +45,9 @@ public interface RememberMeManager {
      * @return he remembered principals or {@code null} if none could be acquired.
      * @since 1.0
      */
+    //基于用于构建Subject实例的指定主题上下文映射，返回主题的任何先前记住的主体以进行自动身份关联（也称为“记住我”）。
+    //
+    //上下文映射通常由Subject.Builder实现填充。查看Shiro已知映射键的SubjectFactory类常量。
     PrincipalCollection getRememberedPrincipals(SubjectContext subjectContext);
 
     /**
@@ -68,6 +71,7 @@ public interface RememberMeManager {
      * @param info    the authenticationInfo returned as a result of the successful authentication attempt
      * @since 1.0
      */
+    //对成功的身份验证尝试做出反应，通常会保存要检索的主体（“记住”）以供将来的系统访问。
     void onSuccessfulLogin(Subject subject, AuthenticationToken token, AuthenticationInfo info);
 
     /**
@@ -79,6 +83,7 @@ public interface RememberMeManager {
      * @param ae      the authentication exception thrown as a result of the failed authentication attempt
      * @since 1.0
      */
+    //对失败的身份验证尝试做出反应，通常是忘记任何以前记住的主题主体。
     void onFailedLogin(Subject subject, AuthenticationToken token, AuthenticationException ae);
 
     /**
@@ -88,5 +93,6 @@ public interface RememberMeManager {
      * @param subject the subject logging out.
      * @since 1.0
      */
+    //对通过忘记任何以前记住的主题的主体的对象进行反应。
     void onLogout(Subject subject);
 }

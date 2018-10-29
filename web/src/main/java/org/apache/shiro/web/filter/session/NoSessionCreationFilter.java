@@ -46,6 +46,14 @@ import javax.servlet.ServletResponse;
  *
  * @since 1.2
  */
+//PathMatchingFilter，用于在请求期间禁用创建新会话。
+// 这是一个有用的过滤器，可放置在任何过滤器链的前面，这些过滤器链可能导致REST，SOAP或其他不打算参与会话的服务调用。
+//
+//此筛选器启用以下行为：
+//如果在调用此过滤器时Subject还没有Session，则此过滤器会有效禁用对subject.getSession（）和subject.getSession（true）的所有调用。
+// 如果在请求期间调用任何一个，则将抛出异常。
+//但是，如果在调用此过滤器之前，Subject已经有一个关联的会话，要么是因为它是在应用程序的另一部分中创建的，要么是链中较高的过滤器创建过滤器，此过滤器无效。
+//最后，对subject.getSession（false）的调用（即错误的布尔值）将不受影响，并且在所有情况下都可以在没有反响的情况下调用。
 public class NoSessionCreationFilter extends PathMatchingFilter {
 
     @Override

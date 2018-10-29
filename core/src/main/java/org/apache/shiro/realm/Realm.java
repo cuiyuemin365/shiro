@@ -60,6 +60,18 @@ import org.apache.shiro.authc.AuthenticationToken;
  * @see org.apache.shiro.authc.pam.ModularRealmAuthenticator ModularRealmAuthenticator
  * @since 0.1
  */
+//  Realm是一种安全组件，可以访问特定于应用程序的安全实体（如用户，角色和权限），以确定身份验证和授权操作。
+//  领域通常与数据源（例如关系数据库，文件系统或其他类似资源）具有一对一的对应关系。
+//  因此，此接口的实现使用特定于数据源的API来确定授权数据（角色，权限等），例如JDBC，文件IO，Hibernate或JPA或任何其他数据访问API。
+//  它们本质上是特定于安全性的DAO。
+//  由于大多数这些数据源通常包含主题（例如用户）信息（如用户名和密码），因此Realm可以充当PAM配置中的可插入身份验证模块。
+//  这允许Realm对单个数据源执行认证和授权任务，这适用于大多数应用程序。
+//  如果由于某种原因您不希望Realm实现执行身份验证任务，则应覆盖支持（AuthenticationToken）方法以始终返回false。
+//  由于每个应用程序都不同，因此可以通过多种方式表示用户和角色等安全数据。
+//  Shiro尽可能地尝试维护非侵入式开发理念 - 它不要求您实现或扩展任何用户，组或角色接口或类。
+//  相反，Shiro允许应用程序实现此接口以访问特定于环境的数据源和数据模型对象。然后可以将实现插入应用程序的Shiro配置中。
+//  这种模块化技术抽象出任何环境/建模细节，并允许Shiro部署在几乎任何应用程序环境中。
+//  大多数用户不会直接实现Realm接口，但会扩展其中一个子类AuthenticatingRealm或AuthorizingRealm，从而大大减少了从头开始实现Realm所需的工作量。
 public interface Realm {
 
     /**
@@ -82,6 +94,9 @@ public interface Realm {
      * @return <tt>true</tt> if this realm can/will authenticate Subjects represented by specified token,
      *         <tt>false</tt> otherwise.
      */
+    //如果此领域希望验证由给定AuthenticationToken实例表示的Subject，则返回true，否则返回false。
+    //如果此方法返回false，则不会调用它来验证令牌所代表的Subject
+    // - 更具体地说，false返回值意味着不会为该令牌调用此Realm实例的getAuthenticationInfo方法。
     boolean supports(AuthenticationToken token);
 
     /**
@@ -100,6 +115,9 @@ public interface Realm {
      *          if there is an error obtaining or constructing an AuthenticationInfo object based on the
      *          specified <tt>token</tt> or implementation-specific login behavior fails.
      */
+    //返回指定令牌的帐户特定于身份验证的信息，如果根据令牌找不到帐户，则返回null。
+    //此方法有效地表示具有基础EIS数据源的相应用户的登录尝试。
+    // 大多数实现仅仅需要查找并返回帐户数据（如方法名称所暗示的）并让Shiro完成其余的工作，但实现当然可以执行eis特定的登录操作（如果需要）。
     AuthenticationInfo getAuthenticationInfo(AuthenticationToken token) throws AuthenticationException;
 
 }

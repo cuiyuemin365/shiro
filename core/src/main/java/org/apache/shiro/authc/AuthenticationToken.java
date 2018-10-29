@@ -57,6 +57,22 @@ import java.io.Serializable;
  * @see UsernamePasswordToken
  * @since 0.1
  */
+//AuthenticationToken是用户在身份验证尝试期间提交的帐户主体和支持凭据的合并。
+//
+//令牌通过authenticate（token）方法提交给Authenticator。然后，Authenticator执行身份验证/登录过程。
+//
+//AuthenticationToken的常见实现将具有用户名/密码对，X.509证书，PGP密钥或您能想到的任何其他内容。令牌可以是Authenticator正确验证所需的任何内容。
+//
+//由于应用程序以不同方式表示用户数据和凭据，因此该接口的实现是特定于应用程序的。
+// 您可以随意获取用户的主体和凭证（例如Web表单，Swing表单，指纹识别等），然后以此接口的实现形式将它们提交给Shiro框架。
+//
+//如果您的应用程序的身份验证过程基于用户名/密码（与大多数人一样），而不是自己实现此界面，请查看UsernamePasswordToken类，因为它可能足以满足您的需求。
+//
+//如果一个令牌实现了一个名为RememberMeAuthenticationToken的子接口，则会为该令牌启用RememberMe服务。
+// 如果需要RememberMe服务，则实现该接口（UsernamePasswordToken已实现此接口）。
+//
+//如果您熟悉JAAS，则AuthenticationToken将取代javax.security.auth.callback.Callback的概念，并定义有意义的行为（Callback只是一个标记接口，几乎没用）。
+// 我们还认为AuthenticationToken这个名称更准确地反映了它在登录框架中的真正目的，而Callback则不太明显。
 public interface AuthenticationToken extends Serializable {
 
     /**

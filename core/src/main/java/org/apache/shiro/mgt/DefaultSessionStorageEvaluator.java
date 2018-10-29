@@ -35,7 +35,7 @@ public class DefaultSessionStorageEvaluator implements SessionStorageEvaluator {
      */
     private boolean sessionStorageEnabled = true;
 
-    /**
+    /**2
      * This implementation functions as follows:
      * <ul>
      * <li>If the specified Subject already has an existing {@code Session} (typically because an application developer

@@ -35,6 +35,10 @@ import javax.servlet.ServletException;
  *
  * @since 1.0
  */
+//基本抽象过滤器简化过滤器初始化和访问init参数。
+// 应该通过重写onFilterConfigSet（）模板方法来执行子类初始化逻辑。
+// FilterChain执行逻辑（doFilter（javax.servlet.ServletRequest，javax.servlet.ServletResponse，javax.servlet.FilterChain）
+// 方法留给子类。
 public abstract class AbstractFilter extends ServletContextSupport implements Filter {
 
     private static transient final Logger log = LoggerFactory.getLogger(AbstractFilter.class);

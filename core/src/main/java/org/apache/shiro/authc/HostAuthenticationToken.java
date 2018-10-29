@@ -40,5 +40,8 @@ public interface HostAuthenticationToken extends AuthenticationToken {
      *         of the client's IP address is hostname resolution is not
      *         available or disabled.
      */
+    //返回发生身份验证尝试的客户端的主机名，或者如果Shiro环境不能或选择不解析主机名以提高性能，则此方法返回客户端IP地址的String表示形式。
+    //
+    //在Web环境中使用时，此值通常与ServletRequest.getRemoteHost（）值相同。
     String getHost();
 }

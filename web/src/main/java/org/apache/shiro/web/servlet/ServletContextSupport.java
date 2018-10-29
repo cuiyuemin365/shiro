@@ -25,6 +25,7 @@ import javax.servlet.ServletContext;
  *
  * @since 0.2
  */
+//需要访问Web应用程序{@link ServletContext ServletContext}的任何组件的基本实现。
 public class ServletContextSupport {
 
     //TODO - complete JavaDoc

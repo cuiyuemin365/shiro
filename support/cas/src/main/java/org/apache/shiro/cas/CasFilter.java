@@ -50,6 +50,7 @@ import java.io.IOException;
  * @deprecated replaced with Shiro integration in <a href="https://github.com/bujiio/buji-pac4j">buji-pac4j</a>.
  */
 @Deprecated
+//此筛选器验证CAS服务票证以对用户进行身份验证。必须在CAS服务器识别的URL上进行配置。
 public class CasFilter extends AuthenticatingFilter {
     
     private static Logger logger = LoggerFactory.getLogger(CasFilter.class);

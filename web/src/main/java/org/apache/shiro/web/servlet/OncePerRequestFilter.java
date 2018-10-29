@@ -44,6 +44,13 @@ import java.io.IOException;
  *
  * @since 0.1
  */
+//过滤基类，保证在每个请求上只在任何servlet容器上执行一次。它提供了一个带有HttpServletRequest和HttpServletResponse参数的doFilterInternal方法。
+//
+//getAlreadyFilteredAttributeName方法确定如何标识已过滤请求。默认实现基于具体过滤器实例的已配置名称。
+//控制过滤器执行
+//1.2引入了isEnabled（ServletRequest，ServletResponse）方法和isEnabled（）属性，以允许显式控制过滤器是否对任何给定请求执行（或允许直通）。
+//
+//注意这个类最初是从Spring框架借来的，但是一直在修改。
 public abstract class OncePerRequestFilter extends NameableFilter {
 
     /**
@@ -63,6 +70,7 @@ public abstract class OncePerRequestFilter extends NameableFilter {
      *
      * @see #isEnabled()
      */
+    //通常确定此过滤器是应该执行还是让请求进入下一个链元素。
     private boolean enabled = true; //most filters wish to execute when configured, so default to true
 
     /**
